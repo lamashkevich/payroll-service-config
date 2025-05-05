@@ -8,6 +8,8 @@ spring:
           uri: lb://employee-service
           predicates:
             - Path=/employees/api-docs
+          filters:
+            - RewritePath=/employees/api-docs, /api-docs
             
         - id: employee-service
           uri: lb://employee-service
