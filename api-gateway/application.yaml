@@ -4,6 +4,7 @@ spring:
       default-filters:
         - TokenRelay
       routes:
+        # Employee-service
         - id: employee-service-api-docs
           uri: lb://employee-service
           predicates:
@@ -16,16 +17,40 @@ spring:
           predicates:
             - Path=/api/v1/employees/**
 
+        # Payroll calculation service
+        - id: payroll-calculation-service-api-docs
+          uri: lb://payroll-calculation-service
+          predicates:
+            - Path=/payrolls/api-docs
+          filters:
+            - RewritePath=/payrolls/api-docs, /api-docs
+            
         - id: payroll-calculation-service
           uri: lb://payroll-calculation-service
           predicates:
             - Path=/api/v1/payrolls/**
 
+        # Tax service
+        - id: tax-service-api-docs
+          uri: lb://tax-service
+          predicates:
+            - Path=/taxes/api-docs
+          filters:
+            - RewritePath=/taxes/api-docs, /api-docs
+            
         - id: tax-service
           uri: lb://tax-service
           predicates:
             - Path=/api/v1/taxes/**
 
+        # Payment service
+        - id: payment-service-api-docs
+          uri: lb://payment-service
+          predicates:
+            - Path=/payments/api-docs
+          filters:
+            - RewritePath=/payments/api-docs, /api-docs
+            
         - id: payment-service
           uri: lb://payment-service
           predicates:
