@@ -55,3 +55,19 @@ spring:
           uri: lb://payment-service
           predicates:
             - Path=/api/v1/payments/**
+            
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    urls:
+      - name: Employee service
+        url: /employees/api-docs
+      - name: Tax service
+        url: /taxes/api-docs
+      - name: Payroll calculation service
+        url: /payrolls/api-docs
+      - name: Payment service
+        url: /payments/api-docs
